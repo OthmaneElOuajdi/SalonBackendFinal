@@ -1,0 +1,82 @@
+# ==============================================
+# DOCKERIGNORE - Salon de Coiffure Backend
+# ==============================================
+
+# Fichiers de build et caches
+target/
+build/
+*.class
+*.jar
+!target/coiffure-*.jar
+
+# IDEs et éditeurs
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.settings/
+.project
+.classpath
+.factorypath
+.springBeans
+.sts4-cache
+
+# Système d'exploitation
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Variables d'environnement et configuration locale
+.env
+.env.*
+application-dev.properties
+application-local.properties
+application-secrets.properties
+
+# Logs
+*.log
+logs/
+
+# Documentation et fichiers temporaires
+README.md
+DEPLOY_RENDER.md
+*.md
+*.txt
+*.backup
+*.tmp
+*.temp
+
+# Git et versioning
+.git/
+.gitignore
+.gitattributes
+
+# Tests et couverture
+coverage/
+test-results/
+*.lcov
+
+# Node modules (si présents)
+node_modules/
+npm-debug.log*
+
+# Docker lui-même
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Fichiers de développement Maven
+.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+# Fichiers de sécurité
+*.key
+*.pem
+*.p12
+*.jks
+secrets/
+private/
