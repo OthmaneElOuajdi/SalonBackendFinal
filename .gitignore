@@ -98,7 +98,6 @@ core.*
 # ==============================================
 # DOCKER & DEPLOYMENT
 # ==============================================
-.dockerignore
 .docker/
 docker-compose.override.yml
 
