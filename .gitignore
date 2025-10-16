@@ -1,10 +1,20 @@
+# ==============================================
+# BUILD & SYSTEM
+# ==============================================
 HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
+# ==============================================
+# IDEs & EDITORS
+# ==============================================
+
+## STS (Spring Tool Suite)
 .apt_generated
 .classpath
 .factorypath
@@ -13,21 +23,88 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
+## IntelliJ IDEA
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+## NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+## VS Code
 .vscode/
+
+## System files
+.DS_Store
+Thumbs.db
+
+# ==============================================
+# ENVIRONMENT & CONFIGURATION
+# ==============================================
+.env
+.env.local
+.env.*.local
+.env*
+application-dev.properties
+application-local.properties
+application-dev-debug.properties
+
+# ==============================================
+# SECURITY & SENSITIVE FILES
+# ==============================================
+*.log
+logs/
+application-secrets.properties
+*.key
+*.pem
+*.p12
+*.jks
+
+# YAML configuration files
+application-*.yml
+application-*.yaml
+
+# Secrets and private folders
+secrets/
+private/
+.secrets/
+
+# Backup and archives
+*.backup
+*.bak
+*-backup.*
+backup/
+archives/
+
+# ==============================================
+# DATABASE FILES
+# ==============================================
+*.db
+*.sqlite
+*.sqlite3
+
+# ==============================================
+# DEVELOPMENT TOOLS
+# ==============================================
+*.hprof
+*.dump
+core.*
+
+# ==============================================
+# DOCKER & DEPLOYMENT
+# ==============================================
+.dockerignore
+.docker/
+docker-compose.override.yml
+
+# ==============================================
+# TEMPORARY FILES
+# ==============================================
+*.tmp
+*.temp
+*~
