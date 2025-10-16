@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <!-- ==========================================
+         CONVERTER: Sensitive Data Masking
+         (Prevents exposure of passwords, ports, paths, and user info)
+    ========================================== -->
+    <conversionRule conversionWord="maskedMsg"
+                    converterClass="com.salon.coiffure.config.SensitiveDataMaskingConverter" />
+
+    <!-- ==========================================
+         APPENDER: Console Output
+         (Used in development or fallback environments)
+    ========================================== -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <!-- Use the masking converter -->
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %maskedMsg%n</pattern>
+            </layout>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ==========================================
+         APPENDER: Rolling File Appender
+         (Used in production with rotation and retention)
+    ========================================== -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/coiffure-app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/coiffure-app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %maskedMsg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ==========================================
+         SPRING PROFILE: Development
+         (Verbose logging, console only)
+    ========================================== -->
+    <springProfile name="dev">
+        <logger name="com.salon.coiffure" level="INFO" />
+        <logger name="org.springframework.security" level="WARN" />
+        <logger name="org.springframework.security.web.FilterChainProxy" level="ERROR" />
+        <logger name="org.springframework.boot.autoconfigure.security" level="ERROR" />
+        <logger name="org.hibernate.SQL" level="INFO" />
+        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" />
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+
+    <!-- ==========================================
+         SPRING PROFILE: Production
+         (File-based logging, WARN and above)
+    ========================================== -->
+    <springProfile name="prod">
+        <logger name="com.salon.coiffure" level="INFO" />
+        <logger name="org.springframework.security" level="WARN" />
+        <logger name="org.hibernate.SQL" level="WARN" />
+        <logger name="org.springframework.boot.autoconfigure.security" level="WARN" />
+
+        <root level="WARN">
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+
+    <!-- ==========================================
+         SPRING PROFILE: Default
+         (Fallback configuration, console output)
+    ========================================== -->
+    <springProfile name="!dev,!prod">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+
+</configuration>
