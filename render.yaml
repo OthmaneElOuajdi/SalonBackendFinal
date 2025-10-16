@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: salon-coiffure-backend
+    env: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/coiffure-0.0.1-SNAPSHOT.jar
+    plan: free
+    region: frankfurt
+    branch: main
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: NEON_DATABASE_URL
+        sync: false
+      - key: NEON_USERNAME
+        sync: false
+      - key: NEON_PASSWORD
+        sync: false
+      - key: SERVER_PORT
+        value: $PORT
